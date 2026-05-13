@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四级英语单词记录器</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title">WordMaster</h1>
+                <nav class="app-nav">
+                    <button id="btn-record" class="nav-btn active" data-tab="record">
+                        <span class="nav-icon">📝</span>
+                        <span class="nav-label">记录</span>
+                    </button>
+                    <button id="btn-study" class="nav-btn" data-tab="study">
+                        <span class="nav-icon">🎯</span>
+                        <span class="nav-label">背诵</span>
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <!-- 记录生词模块 -->
+            <section id="record-section" class="section active">
+                <div class="section-content">
+                    <div class="record-form">
+                        <h2 class="section-title">添加新单词</h2>
+                        <div class="input-wrapper">
+                            <input 
+                                type="text" 
+                                id="word-input" 
+                                placeholder="输入英文单词..." 
+                                autocomplete="off"
+                                class="word-input"
+                            >
+                            <button id="btn-search" class="btn-primary">
+                                <span class="btn-text">查询并添加</span>
+                            </button>
+                        </div>
+                        <div id="word-result" class="word-result"></div>
+                    </div>
+
+                    <div class="word-list-container">
+                        <div class="list-header">
+                            <h2 class="section-title">我的单词本</h2>
+                            <span class="word-count-badge" id="word-count">0</span>
+                        </div>
+                        <div id="word-list" class="word-list"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 背诵模式模块 -->
+            <section id="study-section" class="section">
+                <div class="section-content">
+                    <div class="study-controls">
+                        <h2 class="section-title">背诵设置</h2>
+                        <div class="control-group">
+                            <label class="control-label">显示模式：</label>
+                            <select id="display-mode" class="control-select">
+                                <option value="chinese">显示中文，回忆英文</option>
+                                <option value="english">显示英文，回忆中文</option>
+                            </select>
+                        </div>
+                        <button id="btn-start-study" class="btn-primary btn-large">
+                            <span class="btn-text">开始背诵</span>
+                        </button>
+                    </div>
+
+                    <div id="study-card" class="study-card hidden">
+                        <div class="card-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-fill"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span id="current-index">0</span> / <span id="total-count">0</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card-content">
+                            <div id="card-word" class="card-word"></div>
+                            <div id="card-meaning" class="card-meaning hidden"></div>
+                        </div>
+                        
+                        <div class="card-actions">
+                            <button id="btn-remember" class="btn-success">
+                                <span class="btn-icon">✓</span>
+                                <span class="btn-text">记得</span>
+                            </button>
+                            <button id="btn-forget" class="btn-danger">
+                                <span class="btn-icon">✗</span>
+                                <span class="btn-text">不记得</span>
+                            </button>
+                        </div>
+                        
+                        <div id="confirm-buttons" class="confirm-buttons hidden"></div>
+                    </div>
+
+                    <div id="study-complete" class="study-complete hidden">
+                        <div class="complete-icon">🎉</div>
+                        <h2 class="complete-title">背诵完成！</h2>
+                        <p class="complete-text">
+                            本次复习了 <span id="reviewed-count" class="highlight">0</span> 个单词
+                        </p>
+                        <button id="btn-restart" class="btn-primary">
+                            <span class="btn-text">重新开始</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
